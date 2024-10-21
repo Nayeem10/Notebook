@@ -1,12 +1,19 @@
-vector<int. manacher(string str){
-  int i, j, k, l=str.size(), n=l<<1;
-  vector<int> pal(n);
-  for(i=0,j=0,k=0; i<n; j=max(0,j-k),i+=k){
-    while(j<=i && (i+j+1)<n && str[(i-j)>>1] == str(i+j+1)>>1]) j++;
-    for(k=1, pal[i]=j; k<=i && k<=pal[i] && (pal[i]-k) != pal[i-k]; k++){
-      pal[i+k] = min(pal[i-k],pal[i]-k);
-    }
+void Manacher() {
+  vector<int> d1(n);
+  // d[i] = number of palindromes taking s[i] as center
+  for (int i = 0, l = 0, r = -1; i < n; i++) {
+    int k = (i > r) ? 1 : min(d1[l + r - i], r - i + 1);
+    while (0 <= i - k && i + k < n && s[i - k] == s[i + k]) k++;
+    d1[i] = k--;
+    if (i + k > r) l = i - k, r = i + k;
   }
-  pal.pop_back();
-  return pal;
+
+  vector<int> d2(n);
+  // d[i] = number of palindromes taking s[i-1] and s[i] as center
+  for (int i = 0, l = 0, r = -1; i < n; i++) {
+    int k = (i > r) ? 0 : min(d2[l + r - i + 1], r - i + 1);
+    while (0 <= i - k - 1 && i + k < n && s[i - k - 1] == s[i + k]) k++;
+    d2[i] = k--;
+    if (i + k > r) l = i - k - 1, r = i + k;
+  }
 }
