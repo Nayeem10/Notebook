@@ -1,15 +1,17 @@
 \begin{multicols*}{3}
 \newpage
 \section{Equations and Formulas}
-\subsection{Catalan Numbers}
+\subsection{Catalan Numbers, convolution and super}
 $\displaystyle C_n=\frac{1}{n+1}{2n \choose n}$
 $\displaystyle C_0=1,C_1=1\text{ and }C_n=\sum \limits_{k=0}^{n-1}C_k C_{n-1-k}$ \\
 The number of ways to completely parenthesize $n$+$\displaystyle 1$ factors. \\
 The number of triangulations of a convex polygon with $n$+$\displaystyle 2$ sides (i.e. the number of partitions of polygon into disjoint triangles by using the diagonals). \\
 The number of ways to connect the $\displaystyle 2n$ points on a circle to form $n$ disjoint i.e. non-intersecting chords. \\
-The number of rooted full binary trees with $n$+$\displaystyle 1$ leaves (vertices are not numbered). A rooted binary tree is full if every vertex has either two children or no children. \\
+%The number of rooted full binary trees with $n$+$\displaystyle 1$ leaves (vertices are not numbered). A %rooted binary tree is full if every vertex has either two children or no children. \\
 Number of permutations of $\displaystyle {1, …, n}$ that avoid the pattern $\displaystyle 123$ (or any of the other patterns of length $3$); that is, the number of permutations with no three-term increasing sub-sequence. For $n = 3$, these permutations are $\displaystyle 132,\ 213,\ 231,\ 312$ and $321.$
-
+$\displaystyle C_n^{(k)}=\frac{k+1}{n+k+1}{2n+k \choose n}$
+$\displaystyle S(m,n)=\frac{(2m)!(2n)!}{m!n!(m+n)!}$
+$$\displaystyle C_n^{(k)}=\frac{(2n+k-1)(2n+k)}{n(n+k+1)}C_{n-1}^{(k)}$$
 \subsection{Stirling Numbers First Kind}
 The Stirling numbers of the first kind count permutations according to their number of cycles (counting fixed points as cycles of length one). \\
 $S(n,k)$ counts the number of permutations of $n$ elements with $\displaystyle \displaystyle k$ disjoint cycles. \\
@@ -40,9 +42,9 @@ If $\displaystyle P(n)=\sum_{k=0}^{n}(-1)^{k}{n \choose k} \cdot Q(k)$ , then,
 \subsection{Different Math Formulas}
 \textbf{Picks Theorem : } $ A = i + b / 2 - 1 $ \\ 
 \textbf{Deragements : } $ d(i) = (i - 1) \times \left( d(i - 1) + d(i - 2) \right) $ \\ 
-\begin{multline*}
-\displaystyle \frac{n}{ab}-\Big\{\frac{b{\prime} n}{a}\Big\}-\Big\{\frac{a{\prime} n}{b}\Big\} + 1
-\end{multline*}
+%\begin{multline*}
+%\displaystyle \frac{n}{ab}-\Big\{\frac{b{\prime} n}{a}\Big\}-\Big\{\frac{a{\prime} n}{b}\Big\} + 1
+%\end{multline*}
 \subsection{GCD and LCM}
 if $m$ is any integer, then $\displaystyle \gcd(a + m {\cdot} b, b) = \gcd(a, b)$ \\
 The gcd is a multiplicative function in the following sense: if $\displaystyle a_1$ and $\displaystyle a_2$ are relatively prime, then $\displaystyle \gcd(a_1 \cdot a_2, b) = \gcd(a_1, b) \cdot \gcd(a_2,b )$. \\
@@ -57,7 +59,8 @@ $\displaystyle \displaystyle \sum_{k=1}^n \frac{1}{\gcd(k, n)} = \displaystyle \
 $\displaystyle \displaystyle \sum_{k=1}^n \frac{k}{\gcd(k, n)} = \frac{n}{2} \cdot \displaystyle \sum_{d|n} \frac{1}{d} \cdot {\phi{\left(\frac{n}{d}\right)}} = \frac{n}{2} \cdot \frac{1}{n} \cdot \displaystyle \sum_{d|n} d \cdot \phi(d)$ \\
 $\displaystyle \displaystyle \sum_{k=1}^n \frac{n}{\gcd(k, n)} = 2 * \displaystyle \sum_{k=1}^n \frac{k}{\gcd(k, n)} - 1$, for $n > 1$ \\
 $\displaystyle \displaystyle \sum_{i=1}^n \sum_{j=1}^n [\gcd(i, j) = 1] = \displaystyle \sum_{d=1}^n \mu(d) \lfloor {\frac{n}{d} \rfloor}^2$ \\
-$\displaystyle \displaystyle \sum_{i=1}^n \displaystyle\sum_{j=1}^n \gcd(i, j) = \displaystyle \sum_{d=1}^n \phi(d) \lfloor {\frac{n}{d} \rfloor}^2$ \\
+$\displaystyle \displaystyle \sum_{i=1}^n \displaystyle\sum_{j=1}^n \gcd(i, j) = \displaystyle \sum_{d=1}^n \phi(d) \lfloor {\frac{n}{d} \rfloor}^2$ = \displaystyle GPS(n-1)+2\cdot\sum_{d|n}\phi(d)\cdot\frac{n}{d}-n \\
 $\displaystyle \sum_{i=1}^n \sum_{j=1}^n i \cdot j[\gcd(i, j) = 1] = \sum_{i=1}^n \phi(i)i^2$ \\
 $\displaystyle F(n) = \displaystyle \sum_{i=1}^n \displaystyle \sum_{j=1}^n \operatorname{lcm}(i, j) = \displaystyle \sum_{l=1}^n {\left(\frac{\left( 1 + \lfloor{\frac{n}{l} \rfloor} \right) \left( \lfloor{\frac{n}{l} \rfloor} \right)} {2} \right)}^2 \displaystyle \sum_{d|l} \mu(d)ld$ \\
+
 \end{multicols*}
