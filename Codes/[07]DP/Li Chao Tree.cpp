@@ -1,6 +1,5 @@
 using ll = long long;
 const ll inf = 2e18;
-
 struct Line {
   ll m, c;
   ll eval(ll x) {

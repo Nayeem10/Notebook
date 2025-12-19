@@ -6,17 +6,14 @@ void find_bridge(int u, int p) {
   bool fl = 1;
   for (auto [v, id] : g[u]) {
     if (v == p && fl) {
-      fl = 0;
-      continue;
+      fl = 0; continue;
     }
     if (disc[v]) {
       low[u] = min(low[u], disc[v]);
     } else {
       find_bridge(v, u);
       low[u] = min(low[u], low[v]);
-      if (disc[u] < low[v]) {
-        mark[id] = 1;
-      }
+      if (disc[u] < low[v]) mark[id] = 1;
     }
   }
 }
@@ -33,8 +30,7 @@ void solve() {
   cin >> n >> m;
   vector<PLL> edges;
   for (int i = 0; i < m; i++) {
-    int u, v;
-    cin >> u >> v;
+    int u, v; cin >> u >> v;
     edges.push_back({u, v});
     g[u].push_back({v, i});
     g[v].push_back({u, i});

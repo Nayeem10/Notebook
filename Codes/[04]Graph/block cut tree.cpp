@@ -4,12 +4,10 @@ vector<int> g[N], tree[N], st, comp[N];
 int n, ptr, cur, in[N], low[N], id[N];
 void memclear() {
   for (int i = 1; i <= n; i++) {
-    g[i].clear();
-    in[i] = low[i] = art[i] = 0;
+    g[i].clear(); in[i] = low[i] = art[i] = 0;
   }
   for (int i = 1; i <= ptr; i++) {
-    tree[i].clear();
-    comp[i].clear();
+    tree[i].clear(); comp[i].clear();
   }
   st.clear();
   ptr = cur = 0;
@@ -25,12 +23,9 @@ void dfs(int u, int from = -1) {
           art[u] = ~from or in[v] > in[u] + 1;
           comp[++cur].emplace_back(u);
           while (comp[cur].back() ^ v) {
-            comp[cur].emplace_back(st.back());
-            st.pop_back();
-          }
-        }
-      } else
-        low[u] = min(low[u], in[v]);
+            comp[cur].emplace_back(st.back()); st.pop_back();
+          } }
+      } else low[u] = min(low[u], in[v]);
     }
 }
 void build_tree() {
@@ -41,10 +36,7 @@ void build_tree() {
     int x = ++ptr;
     for (int u : comp[i]) {
       if (art[u]) {
-        tree[x].emplace_back(id[u]);
-        tree[id[u]].emplace_back(x);
-      } else
-        id[u] = x;
-    }
-  }
+        tree[x].emplace_back(id[u]); tree[id[u]].emplace_back(x);
+      } else id[u] = x;
+    } }
 }

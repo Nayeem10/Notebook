@@ -27,6 +27,6 @@ int kruskal(vector<tuple<int, int, int>> edges, int n) {
     cost += w;
   }
   return cost;
-} /* // PRIM'S SPANNING TREE (MST) */
+} /* PRIM'S SPANNING TREE (MST) */
 DIJKSTRA code... start from a node,
     and push nodes which are not marked popped edges weight are taken

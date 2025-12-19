@@ -27,8 +27,7 @@ class BipartiteMatcher {
     }
     dist[0] = INT_MAX;
     while (!q.empty()) {
-      int u = q.front();
-      q.pop();
+      int u = q.front(); q.pop();
       if (dist[u] < dist[0]) {
         for (int v : adj[u]) {
           if (dist[matchR[v]] == INT_MAX) {
@@ -43,12 +42,9 @@ class BipartiteMatcher {
   bool dfs(int u) {
     if (u != 0) {
       for (int v : adj[u]) {
-        if (dist[matchR[v]] == dist[u] + 1) {
-          if (dfs(matchR[v])) {
-            matchL[u] = v;
-            matchR[v] = u;
-            return true;
-          }
+        if (dist[matchR[v]] == dist[u] + 1 and dfs(matchR[v])) {
+          matchL[u] = v; matchR[v] = u;
+          return true;
         }
       }
       dist[u] = INT_MAX;
@@ -58,13 +54,9 @@ class BipartiteMatcher {
   }
   int hopcroftKarp() {
     int matching = 0;
-    while (bfs()) {
-      for (int u = 1; u <= n; u++) {
-        if (matchL[u] == 0 && dfs(u)) {
-          matching++;
-        }
-      }
-    }
+    while (bfs())
+      for (int u = 1; u <= n; u++)
+        if (matchL[u] == 0 && dfs(u)) matching++;
     return matching;
   }
 };
