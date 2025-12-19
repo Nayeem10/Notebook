@@ -11,18 +11,14 @@ void induced_sort(const vector<int> &vec, int val_range, vector<int> &SA, const 
   fill(SA.begin(), SA.end(), -1);
   for (int i = lms_idx.size() - 1; i >= 0; --i)
     SA[--r[vec[lms_idx[i]]]] = lms_idx[i];
-  for (int i : SA)
-    if (i >= 1 && sl[i - 1]) {
-      SA[l[vec[i - 1]]++] = i - 1;
-    }
+  for (int i : SA) if (i >= 1 && sl[i - 1]) 
+    SA[l[vec[i - 1]]++] = i - 1;
   fill(r.begin(), r.end(), 0);
-  for (int c : vec)
-    ++r[c];
+  for (int c : vec) ++r[c];
   partial_sum(r.begin(), r.end(), r.begin());
   for (int k = SA.size() - 1, i = SA[k]; k >= 1; --k, i = SA[k])
-    if (i >= 1 && !sl[i - 1]) {
+    if (i >= 1 && !sl[i - 1]) 
       SA[--r[vec[i - 1]]] = i - 1;
-    }
 }
 vector<int> SA_IS(const vector<int> &vec, int val_range) {
   const int n = vec.size();
@@ -37,9 +33,8 @@ vector<int> SA_IS(const vector<int> &vec, int val_range) {
   induced_sort(vec, val_range, SA, sl, lms_idx);
   vector<int> new_lms_idx(lms_idx.size()), lms_vec(lms_idx.size());
   for (int i = 0, k = 0; i < n; ++i)
-    if (!sl[SA[i]] && SA[i] >= 1 && sl[SA[i] - 1]) {
+    if (!sl[SA[i]] && SA[i] >= 1 && sl[SA[i] - 1]) 
       new_lms_idx[k++] = SA[i];
-    }
   int cur = 0;
   SA[n - 1] = cur;
   for (size_t k = 1; k < new_lms_idx.size(); ++k) {
@@ -51,12 +46,10 @@ vector<int> SA_IS(const vector<int> &vec, int val_range) {
     bool flag = false;
     for (int a = i + 1, b = j + 1;; ++a, ++b) {
       if (vec[a] != vec[b]) {
-        flag = true;
-        break;
+        flag = true; break;
       }
       if ((!sl[a] && sl[a - 1]) || (!sl[b] && sl[b - 1])) {
-        flag = !((!sl[a] && sl[a - 1]) && (!sl[b] && sl[b - 1]));
-        break;
+        flag = !((!sl[a] && sl[a - 1]) && (!sl[b] && sl[b - 1])); break;
       }
     }
     SA[j] = (flag ? ++cur : cur);
@@ -81,8 +74,7 @@ vector<int> suffix_array(const string &s, const int LIM = 128) {
   return ret;
 }
 struct SuffixArray {
-  int n;
-  string s;
+  int n; string s;
   vector<int> sa, rank, lcp;
   vector<vector<int>> t;
   vector<int> lg;
@@ -102,15 +94,13 @@ struct SuffixArray {
     lcp.resize(n - 1, 0);
     for (int i = 0; i < n; i++) {
       if (rank[i] == n - 1) {
-        k = 0;
-        continue;
+        k = 0; continue;
       }
       int j = sa[rank[i] + 1];
       while (i + k < n && j + k < n && s[i + k] == s[j + k])  k++;
-      lcp[rank[i]] = k;
-      if (k)  k--;
-    }
-  }
+      lcp[rank[i]] = k; 
+      if (k) k--;
+  } }
   void prec() {
     lg.resize(n, 0);
     for (int i = 2; i < n; i++) lg[i] = lg[i / 2] + 1;
@@ -119,15 +109,12 @@ struct SuffixArray {
     int sz = n - 1;
     t.resize(sz);
     for (int i = 0; i < sz; i++) {
-      t[i].resize(LG);
-      t[i][0] = lcp[i];
+      t[i].resize(LG); t[i][0] = lcp[i];
     }
     for (int k = 1; k < LG; ++k) {
       for (int i = 0; i + (1 << k) - 1 < sz; ++i) {
         t[i][k] = min(t[i][k - 1], t[i + (1 << (k - 1))][k - 1]);
-      }
-    }
-  }
+  } } }
   int query(int l, int r) { // minimum of lcp[l], ..., lcp[r]
     int k = lg[r - l + 1];
     return min(t[l][k], t[r - (1 << k) + 1][k]);
@@ -144,8 +131,7 @@ struct SuffixArray {
       int mid = l + r >> 1;
       if (s.substr(sa[mid], min(n - sa[mid], k)) >= t) ans = mid, r = mid - 1;
       else l = mid + 1;
-    }
-    return ans;
+    } return ans;
   }
   int upper_bound(string &t) {
     int l = 0, r = n - 1, k = t.size(), ans = n;
@@ -153,8 +139,7 @@ struct SuffixArray {
       int mid = l + r >> 1;
       if (s.substr(sa[mid], min(n - sa[mid], k)) > t) ans = mid, r = mid - 1;
       else l = mid + 1;
-    }
-    return ans;
+    } return ans;
   }
   // occurrences of s[p, ..., p + len - 1]
   pair<int, int> find_occurrence(int p, int len) {
@@ -171,7 +156,5 @@ struct SuffixArray {
       int mid = l + r >> 1;
       if (query(p, mid - 1) >= len) ans.second = mid, l = mid + 1;
       else r = mid - 1;
-    }
-    return ans;
-  }
-};
+    } return ans;
+} };

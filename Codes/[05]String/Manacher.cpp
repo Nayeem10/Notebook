@@ -14,5 +14,4 @@ void Manacher() {
     while (0 <= i - k - 1 && i + k < n && s[i - k - 1] == s[i + k]) k++;
     d2[i] = k--;
     if (i + k > r) l = i - k - 1, r = i + k;
-  }
-}
+} }

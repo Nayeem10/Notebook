@@ -32,20 +32,15 @@ struct AhoCorasick {
       q.pop();
       for (int c = 0; c < A; ++c) {
         int v = next[u][c];
-        if (!v)
-          next[u][c] = next[link[u]][c];
+        if (!v) next[u][c] = next[link[u]][c];
         else {
           link[v] = u ? next[link[u]][c] : 0;
           out_link[v] = out[link[v]].empty() ? out_link[link[v]] : link[v];
           q.push(v);
         }
         end_in_pattern[v] |= end_in_pattern[out_link[v]];
-      }
-    }
-  }
+  } } }
   int advance(int u, char c) {
     while (u && !next[u][get(c)]) u = link[u];
-    u = next[u][get(c)];
-    return u;
-  }
-};
+    u = next[u][get(c)]; return u;
+} };
