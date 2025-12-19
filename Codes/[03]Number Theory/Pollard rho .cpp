@@ -8,12 +8,7 @@ inline LL mul(LL a, LL b, LL mod) {
   }
   return result;
 }
-inline LL bigmod(LL num, LL pow, LL mod) {
-  LL ans = 1;
-  for (; pow > 0; pow >>= 1, num = mul(num, num, mod))
-    if (pow & 1) ans = mul(ans, num, mod);
-  return ans;
-}
+// LL bigmod(LL num, LL pow, LL mod) 
 inline bool is_prime(LL n) {
   if (n < 2 or n % 6 % 4 != 1) return (n | 1) == 3;
   LL a[] = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
@@ -31,27 +26,22 @@ LL get_factor(LL n) {
   for (; t++ % 40 or __gcd(prod, n) == 1; x = f(x, n), y = f(f(y, n), n)) {
     (x == y) ? x = i++, y = f(x, n) : 0;
     prod = (q = mul(prod, max(x, y) - min(x, y), n)) ? q : prod;
-  }
-  return __gcd(prod, n);
+  } return __gcd(prod, n);
 }
 void _factor(LL n, map<LL, int>& res) {
   if (n == 1) return;
-  if (is_prime(n))
-    res[n]++;
+  if (is_prime(n)) res[n]++;
   else {
     LL x = get_factor(n);
     _factor(x, res);
     _factor(n / x, res);
-  }
-}
+} }
 map<LL, int> factorize(LL n) {
   map<LL, int> res;
   if (n < 2) return res;
-  LL small_primes[] = {2,  3,  5,  7,  11, 13, 17, 19, 23, 29, 31, 37, 41,
-                       43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
+  LL small_primes[] = {2,  3,  5,  7,  11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
   for (LL p : small_primes)
     for (; n % p == 0; n /= p, res[p]++);
   _factor(n, res);
   return res;
-}
-}  // namespace rho
+} }  // namespace rho

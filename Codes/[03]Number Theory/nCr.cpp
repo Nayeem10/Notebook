@@ -6,9 +6,7 @@ void init() {
     inv[i] = i == 1 ? 1 : (LL)inv[i - mod % i] * (mod / i + 1) % mod;
     fact[i] = (LL)fact[i - 1] * i % mod;
     inv_fact[i] = (LL)inv_fact[i - 1] * inv[i] % mod;
-  }
-}
+} }
 LL C(int n, int r) {
   return (r < 0 or r > n) ? 0 : fact[n] * inv_fact[r] % mod * inv_fact[n - r] % mod;
-}
-}  // namespace com
+} }  // namespace com

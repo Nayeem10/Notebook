@@ -5,8 +5,7 @@ struct Matrix {
   Matrix(int n) : mat(n, vector<DT>(n)) {
     for (int i = 0; i < n; i++) {
       mat[i][i] = 1;
-    }
-  }
+  } }
   Matrix(int n, int m) : mat(n, vector<DT>(m)) {}
   Matrix operator*(Matrix& other) {
     auto &a = mat, &b = other.mat;
@@ -20,8 +19,6 @@ struct Matrix {
           temp = (temp + 1LL * a[i][k] * b[k][j] % MOD) % MOD;
         }
         ret.mat[i][j] = temp;
-      }
-    }
+    } }
     return ret;
-  }
-};
+} };

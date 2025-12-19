@@ -1,17 +1,8 @@
 const LL N = 1 << 18;
 const LL MOD = 786433;
-
 vector<LL> P[N];
 LL rev[N], w[N | 1], a[N], b[N], inv_n, g = primitive_root (MOD);
-LL Pow(LL b, LL p) {
-  LL ret = 1;
-  while (p) {
-    if (p & 1) ret = (ret * b) % MOD;
-    b = (b * b) % MOD;
-    p >>= 1;
-  }
-  return ret;
-}
+// LL Pow = bigmod
 LL primitive_root(LL p) {
   vector<LL> factor;
   LL phi = p - 1, n = phi;
@@ -48,28 +39,21 @@ void NTT(LL *a, LL n, LL dir = 0) {
         LL t = v * w[dir ? n - n / m * j : n / m * j] % MOD;
         v = u - t < 0 ? u - t + MOD : u - t;
         u = u + t >= MOD ? u + t - MOD : u + t;
-      }
-    }
-  }
-  if (dir)
-    for (LL i = 0; i < n; i++) a[i] = (inv_n * a[i]) % MOD;
+  } } }
+  if (dir) for (LL i = 0; i < n; i++) a[i] = (inv_n * a[i]) % MOD;
 }
 vector<LL> multiply (vector<LL> p, vector<LL> q) {
   LL n = p.size(), m = q.size();
   LL t = n + m - 1, sz = 1;
   while (sz < t) sz <<= 1;
   prepare(sz);
-
   for (LL i = 0; i < n; i++) a[i] = p[i];
   for (LL i = 0; i < m; i++) b[i] = q[i];
   for (LL i = n; i < sz; i++) a[i] = 0;
   for (LL i = m; i < sz; i++) b[i] = 0;
-
-  NTT(a, sz);
-  NTT(b, sz);
+  NTT(a, sz); NTT(b, sz);
   for (LL i = 0; i < sz; i++) a[i] = (a[i] * b[i]) % MOD;
   NTT(a, sz, 1);
-
   vector<LL> c(a, a + sz);
   while (c.size() && c.back() == 0) c.pop_back();
   return c;

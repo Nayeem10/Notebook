@@ -1,8 +1,6 @@
 // given a, b will find solutions for, ax + by = 1 
-tuple<LL, LL, LL> EGCD(
-    LL a, LL b) {
-  if (b == 0)
-    return {1, 0, a};
+tuple<LL, LL, LL> EGCD(LL a, LL b) {
+  if (b == 0) return {1, 0, a};
   else {
     auto [x, y, g] = EGCD(b, a % b);
     return {y, x - a / b * y, g};

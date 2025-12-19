@@ -6,5 +6,4 @@ void mobius() {
   for (int i = 2; i < N; i++)
     if (mob[i]) {
       for (int j = i + i; j < N; j += i) mob[j] -= mob[i];
-    }
-}
+} }
