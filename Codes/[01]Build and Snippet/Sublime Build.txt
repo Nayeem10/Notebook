@@ -1,7 +1,13 @@
 {
-"cmd" : ["g++ -std=c++20 -DLOCAL -Wall $file_name -o $file_base_name && timeout 5s ./$file_base_name</home/nayeem/Documents/CP/Codes/input.txt>/home/nayeem/Documents/CP/Codes/output.txt && rm $file_base_name"],
+"cmd" : ["g++ -std=c++20 -DLOCAL -Wall $file_name -o $file_base_name && timeout 5s ./$file_base_name<input.txt> output.txt && rm $file_base_name"],
 "selector" : "source.cpp",
 "file_regex": "ˆ(..[ˆ:]*):([0-9]+):?([0-9]+)?:? (.*)$",
 "shell": true,
 "working_dir" : "$file_path"
 }
+{
+    "shell_cmd": "g++ -std=c++23 \"$file\" -o \"$file_base_name.exe\" && \"$file_base_name.exe\" < input.txt > output.txt && del \"$file_base_name.exe\"",
+    "working_dir": "$file_path",
+    "selector": "source.c++"
+}// interactive 
+"shell_cmd": "g++ -std=c++23 \"$file\" -o \"$file_base_name.exe\" && start cmd /k \"$file_base_name.exe\"",
