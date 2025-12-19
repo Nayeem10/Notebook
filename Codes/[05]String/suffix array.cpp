@@ -1,6 +1,5 @@
 const int N = 3e5 + 9;
 const int LG = 18;
-
 void induced_sort(const vector<int> &vec, int val_range, vector<int> &SA, const vector<bool> &sl, const vector<int> &lms_idx) {
   vector<int> l(val_range, 0), r(val_range, 0);
   for (int c : vec) {
@@ -25,7 +24,6 @@ void induced_sort(const vector<int> &vec, int val_range, vector<int> &SA, const 
       SA[--r[vec[i - 1]]] = i - 1;
     }
 }
-
 vector<int> SA_IS(const vector<int> &vec, int val_range) {
   const int n = vec.size();
   vector<int> SA(n), lms_idx;

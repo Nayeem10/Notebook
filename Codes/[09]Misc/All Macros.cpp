@@ -6,8 +6,8 @@
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
-    //find_by_order(k) --> returns iterator to the kth largest element counting from 0
-    //order_of_key(val) --> returns the number of items in a set that are strictly smaller than our item
+//find_by_order(k) --> returns iterator to the kth largest element counting from 0
+//order_of_key(val) --> returns the number of items in a set that are strictly smaller than our item
 os.erase (os.find_by_order (os.order_of_key(v[i]))) //to erase i-th element from ordered multiset
 template <typename DT> 
 using ordered_set = tree <DT, null_type, less<DT>, rb_tree_tag,tree_order_statistics_node_update>;

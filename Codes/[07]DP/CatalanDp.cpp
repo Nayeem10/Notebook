@@ -1,7 +1,7 @@
 const int nmax = 1e4 + 1;
 const int mod = 1000000007;
-int catalan[nmax + 1]; /* // comb formula: ((2n)Cn)-((2n)C(n-1)) =
-                          (1/(n+1))*((2n)Cn) */
+int catalan[nmax + 1]; 
+// comb formula: ((2n)Cn)-((2n)C(n-1)) = (1/(n+1))*((2n)Cn)
 void genCatalan(int n) {
   catalan[0] = catalan[1] = 1;
   for (int i = 2; i <= n; i++) {
