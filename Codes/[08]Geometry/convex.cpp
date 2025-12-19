@@ -1,4 +1,5 @@
-/* /// minkowski sum of two polygons in O(n) */ Polygon minkowskiSum(
+/// minkowski sum of two polygons in O(n) 
+Polygon minkowskiSum(
     Polygon A, Polygon B) {
   int n = A.size(), m = B.size();
   rotate(A.begin(), min_element(A.begin(), A.end()), A.end());
@@ -14,9 +15,10 @@
   for (int i = 1; i < C.size(); i++) C[i] = C[i] + C[i - 1];
   C.pop_back();
   return C;
-} /* // finds the rectangle with minimum area enclosing a convex polygon and //
-     the rectangle with minimum perimeter enclosing a convex polygon // Tf Ti
-     Same */
+} 
+// finds the rectangle with minimum area enclosing a convex polygon and 
+// the rectangle with minimum perimeter enclosing a convex polygon 
+// Tf Ti Same
 pair<Tf, Tf> rotatingCalipersBoundingBox(const Polygon& p) {
   using Linear::distancePointLine;
   int n = p.size();
@@ -39,7 +41,7 @@ pair<Tf, Tf> rotatingCalipersBoundingBox(const Polygon& p) {
     perimeter = min(perimeter, 2 * w + 2 * h);
   }
   return make_pair(area, perimeter);
-} /* // returns the left side of polygon u after cutting it by ray a->b */
+} // returns the left side of polygon u after cutting it by ray a->b
 Polygon cutPolygon(Polygon u, Point a, Point b) {
   using Linear::lineLineIntersection;
   using Linear::onSegment;
@@ -113,11 +115,13 @@ int extremePoint(const Polygon& poly, Point u) {
       dcmp(dot(poly[a] - poly[(a - 1 + n) % n], u)) > 0)
     return a;
   return b % n;
-} /* // For a convex polygon p and a line l, returns a list of segments // of p
-     that touch or intersect line l. // the i'th segment is considered (p[i],
-     p[(i + 1) modulo |p|]) // #1 If a segment is collinear with the line, only
-     that is returned // #2 Else if l goes through i'th point, the i'th segment
-     is added // Complexity: O(lg |p|) */
+} 
+/* For a convex polygon p and a line l, returns a list of segments of p
+that touch or intersect line l. the i'th segment is considered (p[i],
+p[(i + 1) modulo |p|]) */
+// #1 If a segment is collinear with the line, only that is returned 
+// #2 Else if l goes through i'th point, the i'th segment is added 
+// Complexity: O(lg |p|)
 vector<int> lineConvexPolyIntersection(const Polygon& p, Line l) {
   assert((int)p.size() >= 3);
   assert(l.a != l.b);
@@ -158,7 +162,7 @@ vector<int> lineConvexPolyIntersection(const Polygon& p, Line l) {
     ret.push_back(lo);
   }
   return ret;
-} /* // Calculate [ACW, CW] tangent pair from an external point */
+} /* Calculate [ACW, CW] tangent pair from an external point */
 constexpr int CW = -1, ACW = 1;
 bool isGood(Point u, Point v, Point Q, int dir) {
   return orient(Q, u, v) != -dir;
@@ -197,7 +201,7 @@ Point pointPolyTangent(const Polygon& pt, Point Q, int dir, int lo, int hi) {
   Point ret = pt[lo];
   for (int i = lo + 1; i <= hi; i++) ret = better(ret, pt[i], Q, dir);
   return ret;
-} /* // [ACW, CW] Tangent */
+} /* [ACW, CW] Tangent */
 pair<Point, Point> pointPolyTangents(const Polygon& pt, Point Q) {
   int n = pt.size();
   Point acw_tan = pointPolyTangent(pt, Q, ACW, 0, n - 1);

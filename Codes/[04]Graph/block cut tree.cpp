@@ -20,8 +20,7 @@ void dfs(int u, int from = -1) {
   for (int v : g[u])
     if (v ^ from) {
       if (!in[v]) {
-        dfs(v, u);
-        low[u] = min(low[u], low[v]);
+        dfs(v, u); low[u] = min(low[u], low[v]);
         if (low[v] >= in[u]) {
           art[u] = ~from or in[v] > in[u] + 1;
           comp[++cur].emplace_back(u);
